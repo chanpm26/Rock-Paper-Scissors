@@ -1,4 +1,4 @@
-options = ["Rock", "Paper", "Scissors"]
+options = ["Fire", "Water", "Grass"]
 
 function computerPlay() {
     output = options[Math.floor(Math.random() * options.length)];
@@ -6,55 +6,63 @@ function computerPlay() {
 }
 
 
-function oneRoundOfPlay(theplayerSelection, computerSelection) {
+function playRound(theplayerSelection, computerSelection) {
 
-    if (theplayerSelection == "ROCK" )  {
-        if (computerSelection == "Rock") { 
-            return("It is a tie")
-        } else if (computerSelection == "Scissors") {
-            return("You win! Rock beats scissors");
-        } else (computerSelection == "Paper") 
-            return("You lose! Paper beats rock")
-    } else if (theplayerSelection == "SCISSORS") {
-        if (computerSelection == "Rock") { 
-            return("You lose! Rock beats scissors")
-        } else if (computerSelection == "Scissors") {
+    if (theplayerSelection == "Fire" )  {
+        if (computerSelection == "Fire") { 
+            return("It is a tie!")
+        } else if (computerSelection == "Grass") {
+            return("You win! Fire beats Grass");
+        } else (computerSelection == "Water") 
+            return("You lose! Water beats Fire")
+    } else if (theplayerSelection == "Water") {
+        if (computerSelection == "Fire") { 
+            return("You win! Water beats Fire")
+        } else if (computerSelection == "Water") {
             return("It is a tie!");
-        } else (computerSelection == "Paper") 
-            return("You win! Scissors beats paper")
-    } else if (theplayerSelection == "PAPER") {
-        if (computerSelection == "Rock") { 
-            return("You win! Paper beats rock")
-        } else if (computerSelection == "Paper") {
+        } else (computerSelection == "Grass") 
+            return("You lose! Grass beats Water")
+    } else (theplayerSelection == "Grass") 
+        if (computerSelection == "Fire") { 
+            return("You lose! Fire beats Grass")
+        } else if (computerSelection == "Grass") {
             return("It is a tie!");
-        } else (computerSelection == "Scissors") 
-            return("You lose! Scissors beats paper")
-    } else (theplayerSelection !== "Rock" || theplayerSelection !== "Scissors" || theplayerSelection !== "Paper") 
-        return("That's not an option!")
+        } else (computerSelection == "Water") 
+            return("You win! Grass beats Water")
     }
 
+let playerScore = 0
+let computerScore = 0
+
+const scores = document.querySelector('#scores')
+
+let playerScoreText = document.createTextNode(`Player Score = ${playerScore} `)
+scores.appendChild(playerScoreText)
+let space = document.createElement("p")
+scores.appendChild(space)
+let computerScoreText =  document.createTextNode(`Rival Score = ${computerScore} `)
+scores.appendChild(computerScoreText)
 
 const computerSelection = computerPlay()
 const outputText = document.querySelector('#output')
 
-const Rock = document.querySelector('#Rock')
- Rock.addEventListener('click', () => {
+const Fire = document.querySelector('#Fire')
+
+ Fire.addEventListener('click', () => {
+     const computerSelection = computerPlay();
+     outputText.textContent = ((playRound("Fire", computerSelection)))
+})
+
+const Water = document.querySelector('#Water')
+
+Water.addEventListener('click', () => {
     const computerSelection = computerPlay();
-outputText.textContent = (oneRoundOfPlay("ROCK", computerSelection))})
-
-const Scissors = document.querySelector('#Scissors')
-Scissors.addEventListener('click', () => {
-    const computerSelection = computerPlay()
-outputText.textContent = ((oneRoundOfPlay("SCISSORS", computerSelection)))
+outputText.textContent = ((playRound("Water", computerSelection)))
 })
 
-const Paper = document.querySelector('#Paper')
-Paper.addEventListener('click', () => {
+const Grass = document.querySelector('#Grass')
+
+Grass.addEventListener('click', () => {
     const computerSelection = computerPlay()
-outputText.textContent = ((oneRoundOfPlay("PAPER", computerSelection)))
+outputText.textContent = ((playRound("Grass", computerSelection)))
 })
-
-function game () {
-}
-
-game()
