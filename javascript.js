@@ -7,7 +7,6 @@ function computerPlay() {
 
 
 function oneRoundOfPlay(theplayerSelection, computerSelection) {
-    theplayerSelection = theplayerSelection.toUpperCase();
 
     if (theplayerSelection == "ROCK" )  {
         if (computerSelection == "Rock") { 
@@ -33,14 +32,29 @@ function oneRoundOfPlay(theplayerSelection, computerSelection) {
     } else (theplayerSelection !== "Rock" || theplayerSelection !== "Scissors" || theplayerSelection !== "Paper") 
         return("That's not an option!")
     }
-    
+
+
+const computerSelection = computerPlay()
+const outputText = document.querySelector('#output')
+
+const Rock = document.querySelector('#Rock')
+ Rock.addEventListener('click', () => {
+    const computerSelection = computerPlay();
+outputText.textContent = (oneRoundOfPlay("ROCK", computerSelection))})
+
+const Scissors = document.querySelector('#Scissors')
+Scissors.addEventListener('click', () => {
+    const computerSelection = computerPlay()
+outputText.textContent = ((oneRoundOfPlay("SCISSORS", computerSelection)))
+})
+
+const Paper = document.querySelector('#Paper')
+Paper.addEventListener('click', () => {
+    const computerSelection = computerPlay()
+outputText.textContent = ((oneRoundOfPlay("PAPER", computerSelection)))
+})
 
 function game () {
-    for (let i = 0; i < 5; i++) {
-        let  theplayerSelection = prompt("Let's play a game of Rock, Paper, Scissors. What will you pick?", "")
-        const computerSelection = computerPlay();
-        console.log(oneRoundOfPlay(theplayerSelection, computerSelection))
-}
 }
 
 game()
