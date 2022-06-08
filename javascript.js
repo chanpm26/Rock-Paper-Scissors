@@ -55,8 +55,6 @@ let displayText = outputText.textContent = ((playRound("Grass", computerSelectio
 totalScore(displayText)
 })
 
-const scores = document.querySelector('#scores')
-
 function totalScore(displayText) {
 if (displayText.includes("tie")) {
     playerScore == playerScore;
@@ -74,10 +72,12 @@ if (displayText.includes("tie")) {
 playerScoreText.textContent = `Player Score = ${playerScore}`
 computerScoreText.textContent = `Rival Score = ${computerScore} `
 
-if (playerScore == 5) {
-    alert("The game is over! You won!")
-} else if (computerScore == 5) {
-    alert("The game is over! You lost!")
+if (playerScore == 5 && computerScore != 5) {
+  alert("Congrats, you reached 5 points first! You have passed your first test in being a Pokemon Master!");
+  window.location.reload()
+} else if (computerScore == 5 && playerScore != 5) {
+    alert("Sorry, your rival reached 5 points first. Maybe you're not cut out to be a Pokemon Master?");
+    window.location.reload()
 }
 
 }
@@ -85,7 +85,7 @@ if (playerScore == 5) {
 let playerScore = 0
 let computerScore = 0
 
-
+const scores = document.querySelector('#scores')
 let playerScoreText = document.createTextNode(`Player Score = ${playerScore}`)
 scores.appendChild(playerScoreText)
 let space = document.createElement("p")
