@@ -5,7 +5,6 @@ function computerPlay() {
     return(output)
 }
 
-
 function playRound(theplayerSelection, computerSelection) {
 
     if (theplayerSelection == "Fire" )  {
@@ -30,39 +29,66 @@ function playRound(theplayerSelection, computerSelection) {
         } else (computerSelection == "Water") 
             return("You win! Grass beats Water")
     }
-
-let playerScore = 0
-let computerScore = 0
-
-const scores = document.querySelector('#scores')
-
-let playerScoreText = document.createTextNode(`Player Score = ${playerScore} `)
-scores.appendChild(playerScoreText)
-let space = document.createElement("p")
-scores.appendChild(space)
-let computerScoreText =  document.createTextNode(`Rival Score = ${computerScore} `)
-scores.appendChild(computerScoreText)
-
+   
+    
 const computerSelection = computerPlay()
 const outputText = document.querySelector('#output')
 
 const Fire = document.querySelector('#Fire')
-
- Fire.addEventListener('click', () => {
+Fire.addEventListener('click', () => {
      const computerSelection = computerPlay();
-     outputText.textContent = ((playRound("Fire", computerSelection)))
+     let displayText = outputText.textContent = ((playRound("Fire", computerSelection)));
+     totalScore(displayText)
 })
 
 const Water = document.querySelector('#Water')
-
 Water.addEventListener('click', () => {
     const computerSelection = computerPlay();
-outputText.textContent = ((playRound("Water", computerSelection)))
+    let displayText = outputText.textContent = ((playRound("Water", computerSelection)));
+totalScore(displayText)
 })
 
 const Grass = document.querySelector('#Grass')
-
 Grass.addEventListener('click', () => {
     const computerSelection = computerPlay()
-outputText.textContent = ((playRound("Grass", computerSelection)))
+let displayText = outputText.textContent = ((playRound("Grass", computerSelection)));
+totalScore(displayText)
 })
+
+const scores = document.querySelector('#scores')
+
+function totalScore(displayText) {
+if (displayText.includes("tie")) {
+    playerScore == playerScore;
+    computerScore == computerScore;
+} else if (displayText.includes("You win")) {
+    playerScore == playerScore++;
+    computerScore == computerScore;
+} else if (displayText.includes("You lose")) {
+    computerScore == computerScore++;
+    playerScore == playerScore;
+} else {
+    console.log("debug")
+}
+
+playerScoreText.textContent = `Player Score = ${playerScore}`
+computerScoreText.textContent = `Rival Score = ${computerScore} `
+
+if (playerScore == 5) {
+    alert("The game is over! You won!")
+} else if (computerScore == 5) {
+    alert("The game is over! You lost!")
+}
+
+}
+
+let playerScore = 0
+let computerScore = 0
+
+
+let playerScoreText = document.createTextNode(`Player Score = ${playerScore}`)
+scores.appendChild(playerScoreText)
+let space = document.createElement("p")
+scores.appendChild(space)
+let computerScoreText =  document.createTextNode(`Rival Score = ${computerScore} `);
+scores.appendChild(computerScoreText)
