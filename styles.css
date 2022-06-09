@@ -37,6 +37,10 @@ button {
     background-size: cover;
 }
 
+button:hover {
+    opacity: .5;
+}
+
 #Fire {
     border-color: red;
 }
